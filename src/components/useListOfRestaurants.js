@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Shimmer from './shimmer';
 
 const useListOfRestaurants = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
@@ -12,7 +13,7 @@ const useListOfRestaurants = () => {
 
   const fetchData = async () => {
 
-    const data = await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=12.9351929&lng=77.62448069999999&carousel=true&third_party_vendor=1");
+    const data = await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=12.9351929&lng=77.62448069999999");
 
     const json = await data.json();
 
@@ -30,6 +31,8 @@ const useListOfRestaurants = () => {
     );
     setFilteredRestaurant(filteredList);
   };
+
+
 
   return { listOfRestaurants, FilteredRestaurant, handleFilter }
 }

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import ReactDOM from 'react-dom/client';
 import Header from "./components/HeaderComponent";
 import Footer from "./components/Footer";
@@ -8,6 +8,7 @@ import About from "./components/About";
 import Contact from "./components/contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
 
 
 
@@ -15,12 +16,24 @@ const Grocery = React.lazy(() => import("./components/Grocery"));
 
 
 
+
+
 const AppLayout = () => {
-    return (<div className="app">
-        <Header />
-        <Outlet />
-        <Footer />
-    </div>
+    const [username, setUsername] = useState();
+    useEffect(() => {
+        //if i have api then i can fetch from here
+        const data = {
+            name: "kulamani pradhan"
+        }
+        setUsername(data.name)
+    }, [])
+    return (<UserContext.Provider value={{ loggedInUser: username, setUsername }}>
+        <div className="app">
+            <Header />
+            <Outlet />
+            <Footer />
+        </div></UserContext.Provider>
+
     )
 }
 const appRouter = createBrowserRouter([
