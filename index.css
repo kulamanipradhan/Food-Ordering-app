@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button {
+  @apply border p-2 m-4 rounded-2xl;
+}
+* {
+  @apply m-0 box-border;
+}
